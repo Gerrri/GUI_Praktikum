@@ -1,0 +1,135 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+#include <windows.h>
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+SIMPELMENUE MENU
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Farbwechsel",                 100
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+UMRECHNUNG DIALOGEX 44, 47, 187, 200
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Farbwechsel"
+FONT 8, "Helv", 0, 0, 0x0
+BEGIN
+    LTEXT           "Kreis innen",200,7,9,55,13
+    EDITTEXT        100,27,30,32,12
+    SCROLLBAR       120,73,31,101,10
+    LTEXT           "Rot",205,3,31,13,10
+    LTEXT           " ",210,144,26,20,8
+    DEFPUSHBUTTON   "OK",IDOK,27,179,40,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,100,179,53,14
+    EDITTEXT        101,27,48,32,12
+    SCROLLBAR       121,73,49,101,10
+    LTEXT           "Gelb",206,3,49,17,10
+    EDITTEXT        102,27,67,32,12
+    SCROLLBAR       122,73,68,101,10
+    LTEXT           "Blau",207,3,67,16,10
+    LTEXT           "Kreis aussen",201,7,93,55,13
+    EDITTEXT        103,27,114,32,12
+    SCROLLBAR       123,73,114,101,10
+    LTEXT           "Rot",208,3,114,13,10
+    EDITTEXT        104,27,132,32,12
+    SCROLLBAR       124,73,133,101,10
+    LTEXT           "Gelb",209,3,133,17,10
+    EDITTEXT        105,27,151,32,12
+    SCROLLBAR       125,73,152,101,10
+    LTEXT           "Blau",211,3,151,16,10
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    "UMRECHNUNG", DIALOG
+    BEGIN
+        RIGHTMARGIN, 186
+        VERTGUIDE, 27
+        VERTGUIDE, 70
+        BOTTOMMARGIN, 193
+        HORZGUIDE, 30
+        HORZGUIDE, 48
+        HORZGUIDE, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+UMRECHNUNG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
