@@ -1,0 +1,25 @@
+#include <windows.h>
+SimpelMenue MENU {
+	POPUP "&Datei"     {
+        MENUITEM "&Umrechnung", 100
+        MENUITEM  SEPARATOR
+        MENUITEM "&Beenden", 200
+      	}
+}
+UMRECHNUNG DIALOG DISCARDABLE 44,47,186,126
+STYLE DS_MODALFRAME | WS_POPUP| WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Umrechnung"
+FONT 8, "Helv"
+BEGIN
+    LTEXT   "Wert eingeben:",200,18,10,55,13
+    EDITTEXT     100,79,9,56,12
+    CONTROL     "Fahrenheit in Celsius",110,"Button",BS_AUTORADIOBUTTON, 17,36,83,10
+    CONTROL     "Celsius in Fahrenheit",111,"Button",BS_AUTORADIOBUTTON, 17,51,83,10
+    SCROLLBAR   120,118,36,59,10
+    LTEXT       "Nachkommastellen",205,118,53,70,10
+    LTEXT       " ",210,144,26,20,8
+    EDITTEXT    130,79,81,54,12,WS_DISABLED
+    LTEXT       "Ergebnis",-1,37,82,34,8
+    DEFPUSHBUTTON "OK",IDOK,34,103,40,14
+    PUSHBUTTON   "Abbrechen",IDCANCEL,110,103,53,14
+END
