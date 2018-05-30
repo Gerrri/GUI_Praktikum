@@ -1,7 +1,5 @@
-﻿C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(471): warning RC4005: 'PWR_FAIL' : redefinition
-  
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(885): warning RC4005: 'HTERROR' : redefinition
-  
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(886): warning RC4005: 'HTTRANSPARENT' : redefinition
-  
-  Aufgabe.vcxproj -> D:\Data\Coding\C++\GUI (TH)\GUI_Praktikum\Aufgabe\Debug\Aufgabe.exe
+﻿  main.cpp
+c:\users\dustin\documents\netbeansprojects\gui_praktikum\aufgabe\aufgabe\main.cpp(58): warning C4101: "hdc": Unreferenzierte lokale Variable
+c:\users\dustin\documents\netbeansprojects\gui_praktikum\aufgabe\aufgabe\main.cpp(59): warning C4101: "ps": Unreferenzierte lokale Variable
+c:\users\dustin\documents\netbeansprojects\gui_praktikum\aufgabe\aufgabe\main.cpp(233): warning C4390: ";": Leere kontrollierte Anweisung aufgetreten; ist dies beabsichtigt?
+  Aufgabe.vcxproj -> C:\Users\Dustin\Documents\NetBeansProjects\GUI_Praktikum\Aufgabe\Debug\Aufgabe.exe

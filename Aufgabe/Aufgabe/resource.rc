@@ -40,8 +40,6 @@ BEGIN
     SCROLLBAR       120,73,31,101,10
     LTEXT           "Rot",205,3,31,13,10
     LTEXT           " ",210,144,26,20,8
-    DEFPUSHBUTTON   "OK",IDOK,27,179,40,14
-    PUSHBUTTON      "Abbrechen",IDCANCEL,100,179,53,14
     EDITTEXT        101,27,48,32,12
     SCROLLBAR       121,73,49,101,10
     LTEXT           "Gelb",206,3,49,17,10
@@ -58,6 +56,8 @@ BEGIN
     EDITTEXT        105,27,151,32,12
     SCROLLBAR       125,73,152,101,10
     LTEXT           "Blau",211,3,151,16,10
+	//DEFPUSHBUTTON   "OK", IDOK, 27, 179, 40, 14
+	PUSHBUTTON      "Fesnter Schlieﬂen", IDCANCEL, 100, 179, 70, 14
 END
 
 
