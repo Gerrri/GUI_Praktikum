@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 HINSTANCE Instanz;
 int PASCAL WinMain(HINSTANCE,HINSTANCE,LPSTR, int);
 LRESULT CALLBACK Fensterfunktion (HWND, UINT, WPARAM, LPARAM);
@@ -52,20 +53,45 @@ int WINAPI WinMain(HINSTANCE dieseInstanz,HINSTANCE vorherigeInstanz,LPSTR Komma
 }
 LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,LPARAM parameter2)
 {
-    HDC hdc;
-    PAINTSTRUCT ps;
+	PAINTSTRUCT ps;
+	HPEN hPenOld;
+    HDC hdc = BeginPaint(fenster, &ps);
     static int x1,x2,y1,y2;
+	BOOL el;
+	int debugint;
+
+	
 
 
     switch(nachricht)
     {
 
+	case WM_PAINT:
 
 
+		SetDCBrushColor(hdc, RGB(54, 139, 84));
+		SetDCPenColor(hdc, RGB(0, 0, 255));
+
+		SelectObject(hdc, GetStockObject(DC_PEN));
+		SelectObject(hdc, GetStockObject(DC_BRUSH));
+	
+
+
+
+		Ellipse(hdc, 50, 200, 250, 0);
+		Ellipse(hdc, 100, 150, 200, 50);
+
+
+		
+
+		break;
 
 
 
     case WM_MOUSEMOVE:
+
+		
+		
         x1=x2;
         y1=y2;
         x2 = LOWORD(parameter2);
@@ -269,3 +295,7 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
     }
     return FALSE;
 }
+
+
+
+
