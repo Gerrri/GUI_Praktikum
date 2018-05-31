@@ -6,6 +6,15 @@ HINSTANCE Instanz;
 int PASCAL WinMain(HINSTANCE,HINSTANCE,LPSTR, int);
 LRESULT CALLBACK Fensterfunktion (HWND, UINT, WPARAM, LPARAM);
 BOOL FAR PASCAL Farbwechsler_Dialog(HWND, UINT, WPARAM, LPARAM);
+void Farbwechsel(int R1, int G1, int B1, int R2, int G2, int B2);
+
+HDC hdc;
+static int	R1 = 0, R1_E, 
+R2 = 255, R2_E,
+G1 = 0, G1_E,
+G2 = 255, G2_E,
+B1 = 0, B1_E,
+B2 = 255, B2_E;
 
 
 int WINAPI WinMain(HINSTANCE dieseInstanz,HINSTANCE vorherigeInstanz,LPSTR Kommando, int Fenstertyp)
@@ -47,15 +56,21 @@ int WINAPI WinMain(HINSTANCE dieseInstanz,HINSTANCE vorherigeInstanz,LPSTR Komma
     if (!Hauptfenster)
         return 255;
     ShowWindow (Hauptfenster, Fenstertyp);
-    while (GetMessage (&Meldung, NULL, 0, 0))
-        DispatchMessage(&Meldung);
+	while (GetMessage(&Meldung, 0, 0, 0)) {
+		//TranslateMessage(&Meldung);
+		DispatchMessage(&Meldung);
+	}
     return Meldung.wParam;
 }
+
+
 LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,LPARAM parameter2)
 {
-	PAINTSTRUCT ps;
+	
+	//PAINTSTRUCT ps;
 	HPEN hPenOld;
-    HDC hdc = BeginPaint(fenster, &ps);
+    //hdc = BeginPaint(fenster, &ps);
+	hdc = GetDC(fenster);
     static int x1,x2,y1,y2;
 	BOOL el;
 	int debugint;
@@ -66,29 +81,29 @@ LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,L
     switch(nachricht)
     {
 
-	case WM_PAINT:
+	/*case WM_PAINT:
 
 
-		SetDCBrushColor(hdc, RGB(54, 139, 84));
-		SetDCPenColor(hdc, RGB(0, 0, 255));
+		SetDCBrushColor(hdc, RGB(255, 255, 255));
+		SetDCPenColor(hdc, RGB(0, 0, 0));
 
 		SelectObject(hdc, GetStockObject(DC_PEN));
 		SelectObject(hdc, GetStockObject(DC_BRUSH));
 	
-
-
-
+		
 		Ellipse(hdc, 50, 200, 250, 0);
 		Ellipse(hdc, 100, 150, 200, 50);
 
 
 		
 
+		break;*/
+
+	case WM_WINDOWPOSCHANGED:
+		Farbwechsel(R1, G1, B1, R2, G2, B2);
 		break;
 
-
-
-    case WM_MOUSEMOVE:
+    /*case WM_MOUSEMOVE:
 
 		
 		
@@ -101,7 +116,7 @@ LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,L
             InvalidateRect(fenster,NULL,FALSE);
         }
         return 0;
-
+*/
 
     case WM_RBUTTONDBLCLK:
         InvalidateRect(fenster,NULL,TRUE);
@@ -145,16 +160,12 @@ void Sync_Edit_Scroll(HWND BezugDialog, int scroll_ID, int farb_wert, int edit_I
 
 BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM parameter1,LPARAM parameter2)
 {
+	
     //Skalierung der Scroll Bars
     static int minPos = 0;
     static int maxPos = 255;
 	//Startwert der Farbwerte
-	static int	R1 = 1, R1_E,
-				R2 = 1, R2_E,
-				G1 = 1, G1_E,
-				G2 = 1, G2_E,
-				B1 = 1, B1_E,
-				B2 = 1, B2_E;
+	
 
 
 	//ID der Aktuellen Dialogs (der in der GUI betätigt wurde)
@@ -201,6 +212,7 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 			if (ID == 123) { R2--; }
 			if (ID == 124) { G2--; }
 			if (ID == 125) { B2--; }
+			Farbwechsel(R1, G1, B1, R2, G2, B2);
 			break;
 
         case SB_LINEDOWN:
@@ -211,6 +223,7 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 			if (ID == 123) { R2++; }
 			if (ID == 124) { G2++; }
 			if (ID == 125) { B2++; }
+			Farbwechsel(R1, G1, B1, R2, G2, B2);
 			break;
         }
 
@@ -239,6 +252,7 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 		Sync_Edit_Scroll(BezugDialog, 123, R2, 103);
 		Sync_Edit_Scroll(BezugDialog, 124, G2, 104);
 		Sync_Edit_Scroll(BezugDialog, 125, B2, 105);
+		
 		
 
         return TRUE;
@@ -278,8 +292,8 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 			Sync_Edit_Scroll(BezugDialog, 124, G2, 104);
 			Sync_Edit_Scroll(BezugDialog, 125, B2, 105);
 			
-
-
+			
+			Farbwechsel(R1, G1, B1, R2, G2, B2);
 			return TRUE;
         case IDCANCEL:
             
@@ -297,5 +311,30 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 }
 
 
+void Farbwechsel(int R1, int G1, int B1, int R2, int G2, int B2) {
 
+
+	//Stift_Fuellfarbe des ersten Kreises setzen
+	SetDCBrushColor(hdc, RGB(R1, G1, B1));
+	SetDCPenColor(hdc, RGB(R1, G1, B1));
+
+	SelectObject(hdc, GetStockObject(DC_PEN));
+	SelectObject(hdc, GetStockObject(DC_BRUSH));
+
+	//ersten Kreis zeichnen
+	Ellipse(hdc, 50, 200, 250, 0);
+
+
+	//Stift_Fuellfarbe des zweiten Kreises setzen
+	SetDCBrushColor(hdc, RGB(R2, G2, B2));
+	SetDCPenColor(hdc, RGB(R2, G2, B2));
+
+	SelectObject(hdc, GetStockObject(DC_PEN));
+	SelectObject(hdc, GetStockObject(DC_BRUSH));
+
+	//zweiten Kreis zeichnen
+	Ellipse(hdc, 100, 150, 200, 50);
+
+
+}
 

@@ -1,5 +1,5 @@
 ﻿  main.cpp
-d:\data\coding\c++\gui (th)\gui_praktikum\aufgabe\aufgabe\main.cpp(61): warning C4101: "debugint": Unreferenzierte lokale Variable
-d:\data\coding\c++\gui (th)\gui_praktikum\aufgabe\aufgabe\main.cpp(60): warning C4101: "el": Unreferenzierte lokale Variable
-d:\data\coding\c++\gui (th)\gui_praktikum\aufgabe\aufgabe\main.cpp(57): warning C4101: "hPenOld": Unreferenzierte lokale Variable
-  Aufgabe.vcxproj -> D:\Data\Coding\C++\GUI (TH)\GUI_Praktikum\Aufgabe\Debug\Aufgabe.exe
+d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(76): warning C4101: "debugint": Unreferenzierte lokale Variable
+d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(75): warning C4101: "el": Unreferenzierte lokale Variable
+d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(71): warning C4101: "hPenOld": Unreferenzierte lokale Variable
+  Aufgabe.vcxproj -> D:\Programmieren\GitHub\GUI_Praktikum\Aufgabe\Debug\Aufgabe.exe
