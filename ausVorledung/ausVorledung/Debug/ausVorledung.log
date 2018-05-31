@@ -1,4 +1,1 @@
-﻿  main.cpp
-c:\users\dustin\documents\netbeansprojects\gui_praktikum\ausvorledung\ausvorledung\main.cpp(58): warning C4101: "hdc": Unreferenzierte lokale Variable
-c:\users\dustin\documents\netbeansprojects\gui_praktikum\ausvorledung\ausvorledung\main.cpp(59): warning C4101: "ps": Unreferenzierte lokale Variable
-  ausVorledung.vcxproj -> C:\Users\Dustin\Documents\NetBeansProjects\GUI_Praktikum\ausVorledung\Debug\ausVorledung.exe
+﻿  ausVorledung.vcxproj -> D:\Data\Coding\C++\GUI (TH)\GUI_Praktikum\ausVorledung\Debug\ausVorledung.exe

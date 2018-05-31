@@ -4,9 +4,6 @@
 HINSTANCE Instanz;
 int PASCAL WinMain(HINSTANCE,HINSTANCE,LPSTR, int);
 LRESULT CALLBACK Fensterfunktion (HWND, UINT, WPARAM, LPARAM);
-
-
-
 BOOL FAR PASCAL Farbwechsler_Dialog(HWND, UINT, WPARAM, LPARAM);
 
 
@@ -112,16 +109,10 @@ LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,L
 
 char Puffer[40];
 //Aktualisiert die Scrollbar und schreibt in den EditText (farb_wert)
-void Sync_Edit(HWND BezugDialog, int scroll_ID, int farb_wert, int edit_ID ) {
+void Sync_Edit_Scroll(HWND BezugDialog, int scroll_ID, int farb_wert, int edit_ID ) {
 	SetScrollPos(GetDlgItem(BezugDialog, scroll_ID), SB_CTL, farb_wert, TRUE);
 	wsprintf(Puffer, "%i", farb_wert);
 	SetDlgItemText(BezugDialog, edit_ID, Puffer);
-}
-//chreibt in den EditText und Aktualiseirt die Scrollbar (farb_wert)
-void Sync_Scroll(HWND BezugDialog, int scroll_ID, int farb_wert, int edit_ID) {
-	wsprintf(Puffer, "%i", farb_wert);
-	SetDlgItemText(BezugDialog, edit_ID, Puffer);
-	SetScrollPos(GetDlgItem(BezugDialog, scroll_ID), SB_CTL, farb_wert, TRUE);
 }
 
 
@@ -132,12 +123,12 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
     static int minPos = 0;
     static int maxPos = 255;
 	//Startwert der Farbwerte
-	static int	R1 = 5,
-				R2 = 1,
-				G1 = 1,
-				G2 = 1,
-				B1 = 1,
-				B2 = 1;
+	static int	R1 = 1, R1_E,
+				R2 = 1, R2_E,
+				G1 = 1, G1_E,
+				G2 = 1, G2_E,
+				B1 = 1, B1_E,
+				B2 = 1, B2_E;
 
 
 	//ID der Aktuellen Dialogs (der in der GUI betätigt wurde)
@@ -146,7 +137,7 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 
     switch(nachricht)
     {
-	case  EM_GETMODIFY:
+	case EM_GETMODIFY:
 		R1 = 5;
 		return TRUE;
     case WM_INITDIALOG:
@@ -162,12 +153,12 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 		
 
         // Kreis Dialog erste Synchronisation mit Variablen
-		Sync_Edit(BezugDialog, 120, R1, 100);
-		Sync_Edit(BezugDialog, 121, G1, 101);
-		Sync_Edit(BezugDialog, 122, B1, 102);
-		Sync_Edit(BezugDialog, 123, R2, 103);
-		Sync_Edit(BezugDialog, 124, G2, 104);
-		Sync_Edit(BezugDialog, 125, B2, 105);
+		Sync_Edit_Scroll(BezugDialog, 120, R1, 100);
+		Sync_Edit_Scroll(BezugDialog, 121, G1, 101);
+		Sync_Edit_Scroll(BezugDialog, 122, B1, 102);
+		Sync_Edit_Scroll(BezugDialog, 123, R2, 103);
+		Sync_Edit_Scroll(BezugDialog, 124, G2, 104);
+		Sync_Edit_Scroll(BezugDialog, 125, B2, 105);
 
         return TRUE;
 
@@ -206,7 +197,6 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 		if (B2 > maxPos) { B2 = maxPos; }
 
 
-
 		//Wenn Wert < als MinWert wird er auf MinWert gesetzt
 		if (R1 < minPos) { R1 = minPos; }
 		if (G1 < minPos) { G1 = minPos; }
@@ -217,12 +207,12 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 
 
 		//Aktualisiere Alle Edits
-		Sync_Edit(BezugDialog, 120, R1, 100);
-		Sync_Edit(BezugDialog, 121, G1, 101);
-		Sync_Edit(BezugDialog, 122, B1, 102);
-		Sync_Edit(BezugDialog, 123, R2, 103);
-		Sync_Edit(BezugDialog, 124, G2, 104);
-		Sync_Edit(BezugDialog, 125, B2, 105);
+		Sync_Edit_Scroll(BezugDialog, 120, R1, 100);
+		Sync_Edit_Scroll(BezugDialog, 121, G1, 101);
+		Sync_Edit_Scroll(BezugDialog, 122, B1, 102);
+		Sync_Edit_Scroll(BezugDialog, 123, R2, 103);
+		Sync_Edit_Scroll(BezugDialog, 124, G2, 104);
+		Sync_Edit_Scroll(BezugDialog, 125, B2, 105);
 		
 
         return TRUE;
@@ -233,28 +223,37 @@ BOOL FAR PASCAL Farbwechsler_Dialog(HWND BezugDialog,UINT nachricht,WPARAM param
 
 		switch(parameter1)
         {
-        case 100 :
-			//Sync_Scroll(BezugDialog, 120, 25, 100);
-            return TRUE;
-        case 111 :
-            
-            return TRUE;
+
         case IDOK:
-            /*
-			GetDlgItemText(BezugDialog,100,Puffer,10);
-            Temperatur = atof(Puffer);
-            if (gewaehlteRichtung==111)
-            {
-                Temperatur = 9. * Temperatur/5.+32.;
-            }
-            else
-            {
-                Temperatur = 5./9.*(Temperatur - 32.);
-            }
-            sprintf_s(Puffer,"%.*lf",R1,Temperatur);
-            SetDlgItemText(BezugDialog,130,Puffer);
-            
-			*/
+          
+			R1_E = GetDlgItemInt(BezugDialog, 100, NULL, FALSE);
+			G1_E = GetDlgItemInt(BezugDialog, 101, NULL, FALSE);
+			B1_E = GetDlgItemInt(BezugDialog, 102, NULL, FALSE);
+			R2_E = GetDlgItemInt(BezugDialog, 103, NULL, FALSE);
+			G2_E = GetDlgItemInt(BezugDialog, 104, NULL, FALSE);
+			B2_E = GetDlgItemInt(BezugDialog, 105, NULL, FALSE);
+
+
+
+			//Prüft ob sich Edittext Wert und Farbwert unterscheiden , wenn Ja Aktualisierung von Farbwert zu editTextWert
+			if (R1 != R1_E && R1_E <= maxPos && R1_E >= minPos) { R1 = R1_E; }
+			if (G1 != G1_E && G1_E <= maxPos && G1_E >= minPos) { G1 = G1_E; }
+			if (B1 != B1_E && B1_E <= maxPos && B1_E >= minPos) { B1 = B1_E; }
+			if (R2 != R2_E && R2_E <= maxPos && R2_E >= minPos) { R2 = R2_E; } 
+			if (G2 != G2_E && G2_E <= maxPos && G2_E >= minPos) { G2 = G2_E; }
+			if (B2 != B2_E && B2_E <= maxPos && B2_E >= minPos) { B2 = B2_E; }
+
+
+			//Aktualisiere Alle Edits
+			Sync_Edit_Scroll(BezugDialog, 120, R1, 100);
+			Sync_Edit_Scroll(BezugDialog, 121, G1, 101);
+			Sync_Edit_Scroll(BezugDialog, 122, B1, 102);
+			Sync_Edit_Scroll(BezugDialog, 123, R2, 103);
+			Sync_Edit_Scroll(BezugDialog, 124, G2, 104);
+			Sync_Edit_Scroll(BezugDialog, 125, B2, 105);
+			
+
+
 			return TRUE;
         case IDCANCEL:
             

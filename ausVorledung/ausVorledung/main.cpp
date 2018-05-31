@@ -4,10 +4,10 @@
 HINSTANCE Instanz;
 int PASCAL WinMain(HINSTANCE,HINSTANCE,LPSTR, int);
 LRESULT CALLBACK Fensterfunktion (HWND, UINT, WPARAM, LPARAM);
-
-
-
 BOOL FAR PASCAL UmrechnungsFunktion(HWND, UINT, WPARAM, LPARAM);
+
+
+
 
 
 int WINAPI WinMain(HINSTANCE dieseInstanz,HINSTANCE vorherigeInstanz,LPSTR Kommando, int Fenstertyp)
@@ -53,6 +53,7 @@ int WINAPI WinMain(HINSTANCE dieseInstanz,HINSTANCE vorherigeInstanz,LPSTR Komma
         DispatchMessage(&Meldung);
     return Meldung.wParam;
 }
+
 LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,LPARAM parameter2)
 {
     HDC hdc;
@@ -107,8 +108,6 @@ LRESULT CALLBACK Fensterfunktion(HWND fenster,UINT nachricht,WPARAM parameter1,L
     }
     return DefWindowProc(fenster,nachricht,parameter1,parameter2);
 }
-
-
 
 BOOL FAR PASCAL UmrechnungsFunktion(HWND BezugDialog,UINT nachricht,WPARAM parameter1,LPARAM parameter2)
 {
