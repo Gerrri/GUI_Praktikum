@@ -2,4 +2,10 @@
 d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(76): warning C4101: "debugint": Unreferenzierte lokale Variable
 d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(75): warning C4101: "el": Unreferenzierte lokale Variable
 d:\programmieren\github\gui_praktikum\aufgabe\aufgabe\main.cpp(71): warning C4101: "hPenOld": Unreferenzierte lokale Variable
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(471): warning RC4005: 'PWR_FAIL' : redefinition
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(885): warning RC4005: 'HTERROR' : redefinition
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\um\winuser.rh(886): warning RC4005: 'HTTRANSPARENT' : redefinition
+  
   Aufgabe.vcxproj -> D:\Programmieren\GitHub\GUI_Praktikum\Aufgabe\Debug\Aufgabe.exe
